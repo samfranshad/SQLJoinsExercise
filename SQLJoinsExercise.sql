@@ -14,7 +14,7 @@ WHERE p.CategoryID = 1;
  WHERE Rating = 5;
  
 /* joins: find the employee with the most total quantity sold.  use the sum() function and group by */
-SELECT e.EmployeeID, e.FirstName, e.LastName, SUM(Quantity) AS Quantity
+SELECT e.EmployeeID, e.FirstName, e.LastName, SUM(s.Quantity) AS Quantity
 FROM employees AS e
 INNER JOIN sales AS s
 ON e.EmployeeID = s.EmployeeID
@@ -30,7 +30,7 @@ WHERE c.Name = 'Games' OR c.Name = 'Appliances';
 
 /* joins: find the product name, total # sold, and total price sold,
  for Eagles: Hotel California --You may need to use SUM() */
-SELECT p.Name, SUM(s.Quantity) AS Quantity, SUM(s.PricePerUnit) AS Price
+SELECT p.Name, SUM(s.Quantity) AS Quantity, SUM(s.Quantity * s.PricePerUnit) AS Price
 FROM products AS p
 INNER JOIN sales AS s
 ON p.ProductID = s.ProductID
@@ -43,8 +43,6 @@ FROM products AS p
 INNER JOIN reviews AS r
 ON p.ProductID = r.ProductID
 WHERE p.Name = "Visio TV" AND r.Rating = 1;
-
-
 
 -- ------------------------------------------ Extra - May be difficult
 /* Your goal is to write a query that serves as an employee sales report.
